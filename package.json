@@ -1,0 +1,42 @@
+{
+  "name": "kilo-goal-plugin",
+  "version": "0.1.0",
+  "description": "Goal mode for Kilo Code: /goal commands, persistent objectives, and completion evidence.",
+  "author": "Jonghyeon Park (https://github.com/shapelayer)",
+  "type": "module",
+  "main": "./dist/server.js",
+  "exports": {
+    "./server": {
+      "import": "./dist/server.js"
+    },
+    "./tui": {
+      "import": "./dist/tui.js"
+    }
+  },
+  "files": ["dist", "templates", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun build src/server.ts src/tui.ts --outdir dist --target bun --external @kilocode/plugin --external @kilocode/plugin/tui",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "pack:dry-run": "npm pack --dry-run",
+    "prepack": "bun run build",
+    "ci": "bun run typecheck && bun run test && bun run pack:dry-run"
+  },
+  "keywords": ["kilo", "kilocode", "plugin", "goal", "goal-mode", "slash-command"],
+  "license": "MIT",
+  "peerDependencies": {
+    "@kilocode/plugin": "*"
+  },
+  "devDependencies": {
+    "@kilocode/plugin": "latest",
+    "@types/bun": "latest",
+    "@types/node": "latest",
+    "typescript": "latest"
+  },
+  "engines": {
+    "opencode": ">=1.0.0"
+  }
+}
