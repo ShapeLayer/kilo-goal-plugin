@@ -1,10 +1,26 @@
 {
-  "name": "kilo-goal-plugin",
+  "name": "@shapelayer/kilo-goal-plugin",
   "version": "0.1.0",
   "description": "Goal mode for Kilo Code: /goal commands, persistent objectives, and completion evidence.",
+  "keywords": [
+    "kilo",
+    "kilocode",
+    "plugin",
+    "goal",
+    "goal-mode",
+    "slash-command"
+  ],
+  "homepage": "https://github.com/ShapeLayer/kilo-goal-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/ShapeLayer/kilo-goal-plugin/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShapeLayer/kilo-goal-plugin.git"
+  },
+  "license": "MIT",
   "author": "Jonghyeon Park (https://github.com/shapelayer)",
   "type": "module",
-  "main": "./dist/server.js",
   "exports": {
     "./server": {
       "import": "./dist/server.js"
@@ -13,10 +29,16 @@
       "import": "./dist/tui.js"
     }
   },
-  "files": ["dist", "templates", "README.md", "LICENSE"],
-  "publishConfig": {
-    "access": "public"
+  "main": "./dist/server.js",
+  "directories": {
+    "test": "test"
   },
+  "files": [
+    "dist",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "bun build src/server.ts src/tui.ts --outdir dist --target bun --external @kilocode/plugin --external @kilocode/plugin/tui",
     "typecheck": "tsc --noEmit",
@@ -25,10 +47,31 @@
     "prepack": "bun run build",
     "ci": "bun run typecheck && bun run test && bun run pack:dry-run"
   },
-  "keywords": ["kilo", "kilocode", "plugin", "goal", "goal-mode", "slash-command"],
-  "license": "MIT",
-  "peerDependencies": {
-    "@kilocode/plugin": "*"
+  "dependencies": {
+    "bun-types": "^1.4.0",
+    "cross-spawn": "^7.0.6",
+    "detect-libc": "^2.1.2",
+    "effect": "^4.0.0-beta.83",
+    "fast-check": "^4.9.0",
+    "find-my-way-ts": "^0.1.6",
+    "ini": "^7.0.0",
+    "isexe": "^2.0.0",
+    "json-schema": "^0.4.0",
+    "kubernetes-types": "^1.30.0",
+    "msgpackr": "^2.1.0",
+    "msgpackr-extract": "^3.0.4",
+    "multipasta": "^0.2.8",
+    "node-gyp-build-optional-packages": "^5.2.2",
+    "path-key": "^3.1.1",
+    "pure-rand": "^8.4.2",
+    "shebang-command": "^2.0.0",
+    "shebang-regex": "^3.0.0",
+    "toml": "^4.3.0",
+    "undici-types": "^8.3.0",
+    "uuid": "^14.0.2",
+    "which": "^2.0.2",
+    "yaml": "^2.9.0",
+    "zod": "^4.1.8"
   },
   "devDependencies": {
     "@kilocode/plugin": "latest",
@@ -36,7 +79,13 @@
     "@types/node": "latest",
     "typescript": "latest"
   },
+  "peerDependencies": {
+    "@kilocode/plugin": "*"
+  },
   "engines": {
     "opencode": ">=1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
