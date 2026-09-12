@@ -1,6 +1,6 @@
 {
   "name": "@shapelayer/kilo-goal-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Goal mode for Kilo Code: /goal commands, persistent objectives, and completion evidence.",
   "keywords": [
     "kilo",
