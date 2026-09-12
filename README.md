@@ -4,27 +4,29 @@ Adds Codex and Claude Code's `/goal` mode to Kilo Code.
 
 ## Install
 
+Install the plugin globally and add it to Kilo's configuration in one step:
+
 ```sh
-git clone https://github.com/ShapeLayer/kilo-goal-plugin.git
-cd kilo-goal-plugin
-bun install
-bun run build
+kilo plugin @shapelayer/kilo-goal-plugin --global
 ```
 
-Add the plugin to Kilo's configuration file (`.kilo/opencode.jsonc`).
+To install it only for the current project, omit `--global`:
+
+```sh
+kilo plugin @shapelayer/kilo-goal-plugin
+```
+
+Alternatively, add the package directly to a Kilo configuration file such as
+`~/.config/kilo/kilo.jsonc` (global) or `.kilo/kilo.jsonc` (project):
 
 ```jsonc
 {
-  "plugin": ["/path/to/kilo-goal-plugin"]
+  "plugin": ["@shapelayer/kilo-goal-plugin"]
 }
 ```
 
-To use `/goal` from the command picker, also copy the workflow file.
-
-```sh
-mkdir -p ~/.config/kilo/commands
-cp templates/goal.md ~/.config/kilo/commands/goal.md
-```
+Restart Kilo after installation. The plugin registers `/goal` in the command
+picker for both the CLI and editor integrations.
 
 ## Commands
 

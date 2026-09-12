@@ -13,17 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     environment: npm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false
 
       - run: bun install --frozen-lockfile
+      - name: Verify release version
+        run: |
+          package_version="$(node --print "require('./package.json').version")"
+          release_version="${GITHUB_REF_NAME#v}"
+          if [ "$package_version" != "$release_version" ]; then
+            echo "Release tag $GITHUB_REF_NAME does not match package version $package_version" >&2
+            exit 1
+          fi
       - run: bun run ci
-      - run: npm publish --provenance
+      - run: npm publish
